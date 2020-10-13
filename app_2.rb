@@ -47,18 +47,31 @@ print "1 -"
   end
   player2.show_state
 
-action = gets.chomp.to_s # engage l'action en fonction du choix de l'utilisateur
-if action == "a" 
-	then user.search_weapon
-elsif action == "s" 
-	then user.search_health_pack
-elsif action == "0"
-	then user.attacks(player1)
-elsif action == "1"
-	then user.attacks(player2)
-else
-	puts "Mauvaise entrée - merci de rester sur les choix proposés. Confirmes ton choix :"
-end		
+
+check_input = false  # variable correspondant à la validité de l'entrée vs choix proposés
+while check_input == false do # boucle permettant de garantir l'entrée d'un choix proposé
+
+  action = gets.chomp.to_s # engage l'action en fonction du choix de l'utilisateur
+  if action == "a" 
+	 then 
+    check_input = true
+    user.search_weapon
+  elsif action == "s" 
+	 then 
+    check_input = true
+    user.search_health_pack
+  elsif action == "0"
+	 then 
+   check_input = true
+   user.attacks(player1)
+  elsif action == "1"
+	 then 
+    check_input = true
+    user.attacks(player2)
+  else
+	 puts "Mauvaise entrée - merci de rester sur les choix proposés."
+  end
+end	
 
 puts "Les autres joueurs t'attaquent !"
 enemies.each do |enemy|
