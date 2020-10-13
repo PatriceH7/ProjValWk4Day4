@@ -25,7 +25,7 @@ while player1.life_points > 0 && player2.life_points > 0 do
   # phase d'attaque
   puts "Passons à la phase d'attaque :"
   player1.attacks(player2)
-    break if player2.life_points < 0  # pour sortir de la boucle while immédiatement en cas de décès du 2nd joueur
+    break if player2.life_points <= 0  # pour sortir de la boucle while immédiatement en cas de décès du 2nd joueur
   player2.attacks(player1)
   puts
   
