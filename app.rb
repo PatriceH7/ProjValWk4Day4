@@ -1,38 +1,54 @@
-# lignes très pratiques qui appellent les gems du Gemfile. On verra plus tard comment s'en servir ;) - ça évite juste les "require" partout
+# app to be called to start the program and initiate the play
 require 'bundler'
 Bundler.require
 
-# lignes qui appellent les fichiers lib/player.rb et lib/game.rb
-# comme ça, tu peux faire User.new dans ce fichier d'application. Top.
-require_relative 'lib/player'
-require_relative 'lib/game'
+
+$:.unshift File.expand_path("./../lib/app", __FILE__)
+require 'game' # classe à appeler
+require 'player'
+require 'board'
+require 'board_case'
+
+$:.unshift File.expand_path("./../lib/views", __FILE__)
+require 'application' # classe à appeler
+require 'show'
 
 
-# création des 2 joueurs
-player1 = Player.new("Josiane")
-player2 = Player.new("José")
+def perform
+	puts "
+	-------------------------------------------------------
+	|        Bienvenue sur ce jeu de morpion              |
+	|        Bonne chance à tous les 2 !                  |
+	-------------------------------------------------------
+	"
+	sleep(1)
+	puts "Quel est le nom du 1er joueur ? (Vous aurez le symbole X, et commencerez la partie)"
+	name1 = gets.chomp
+	sleep(1)
+	puts "Bienvenue, #{name1}"
+	sleep(1)
+
+	puts "Quel est le nom du 2nd joueur ?"
+	name2 = gets.chomp
+	sleep(1)
+	puts "Bienvenue, #{name2}"
+	sleep(1)
+
+	player1 = Player.new(name1, "X")
+	player2 = Player.new(name2, "O")
+
+	sleep(1)
+	puts "La partie va maintenant commencer..."
+
+	player1.show_state
+	player2.show_state
 
 
-#boucle pour relancer les combats, tant que les vies sont positives
-
-while player1.life_points > 0 && player2.life_points > 0 do 
-  # présentation de l'état (nombre de vies) de chaque joueur avec show_state
-  puts "Voici l'état de nos joueurs :"
-  player1.show_state
-  player2.show_state
-  puts
-
-  # phase d'attaque
-  puts "Passons à la phase d'attaque :"
-  player1.attacks(player2)
-    break if player2.life_points <= 0  # pour sortir de la boucle while immédiatement en cas de décès du 2nd joueur
-  player2.attacks(player1)
-  puts
-  
 end
 
+perform
 
-# binding.pry
+#binding.pry
+#puts "end of file"
 
-# Maintenant c'est open bar pour tester ton application. Tous les fichiers importants sont chargés
-# Tu peux faire User.new, Event.new, binding.pry, User.all, etc.
+
