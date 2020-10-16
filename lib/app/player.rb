@@ -1,4 +1,6 @@
+# player.rb du jeu de morpion
 # classe du joueur
+
 #require 'pry'
 
 class Player
@@ -11,7 +13,14 @@ class Player
 
 	def show_state
 		puts "#{@name} est le joueur utilisant le symbole #{@symbol}"
+	#	puts " #{@name}"
+	#	puts " #{@symbol}"
 	end
+
+	def show_symbol
+		print "#{@symbol}"
+	end
+
 end
 
 #binding.pry
