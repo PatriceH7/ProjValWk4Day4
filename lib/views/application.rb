@@ -48,37 +48,6 @@ class Application
 	new_game.performs_one_round
 	
 
-
-
-
-	
-=begin	
-	a1 = Board_Case.new("A1", " ") # initialise toutes les cases avant de démarrer
-	a2 = Board_Case.new("A2", " ")
-	a3 = Board_Case.new("A3", " ")
-	b1 = Board_Case.new("B1", " ")
-	b2 = Board_Case.new("B2", " ")
-	b3 = Board_Case.new("B3", " ")
-	c1 = Board_Case.new("C1", " ")
-	c2 = Board_Case.new("C2", " ")
-	c3 = Board_Case.new("C3", " ")
-
-	initial_board = Board.new([a1, a2, a3, b1, b2, b3, c1, c2, c3]) # définit le plateau initial 
-
-	initial_board.show_board # affiche le plateau initial
-
-
-	puts "now we try to simulate player1 playing in A1"
-	a1.fill_player1
-	new_board = initial_board
-	new_board.show_board
-
-	puts "now we try to simulate player2 playing in C1"
-	c1.fill_player2
-	new_board.show_board
-
-=end
-
 	end
 end
 
